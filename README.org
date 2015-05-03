@@ -1,0 +1,40 @@
+#+TITLE: tarlogs
+#+OPTIONS: toc:nil
+
+/Create a Tar stream of arbitrarily-named entries from concatenated compressed and uncompressed files/
+
+  * Home page :: [[http://danmbox.github.com/tarlogs]]
+  * Downloads :: [[https://github.com/danmbox/tarlogs][github]]
+  * Author :: [[http://alumnus.caltech.edu/~muresan/][Dan A. Muresan]] (danmbox at gmail dot com)
+
+* DESCRIPTION
+
+=tarlogs= concatenates compressed and gzipped files (the latter are
+uncompressed first), then outputs the resulting entries to stdout,
+packed under arbitrary names in a tar stream. Each entry inherits its
+permission / ownership from the last file concatenated into that
+entry.
+
+Streams (the size of which can only be determined by reading until
+encountering EOF) will be buffered into memory. Either memory
+buffering or temporary files are necessary for streams because the tar
+format requires byte sizes of entries to precede their contents.
+
+* RUNNING
+
+#+BEGIN_EXAMPLE shell
+cd /var/log
+/path/tarlogs.py \
+  -z dpkg.log.2.gz -i dpkg.log.1 -i dpkg.log -o dpkg-recent.log \
+  -i kern.log.1 -i kern.log -o kern-recent.log |
+zbackup /zblogs/backups/$(date '+%Y%m%d_%H%M%S')
+#+END_EXAMPLE
+
+This will output a tar archive containing 2 entries, =dpkg-recent.log=
+and =kern-recent.log=. 
+
+* COPYRIGHT
+
+  Copyright 2015 Dan A. Muresan
+
+  See LICENSE.txt for licensing information.
