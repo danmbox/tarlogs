@@ -105,6 +105,8 @@ def cmdline (args):
       tinfo.size = tsize
       tarf.addfile (tinfo, fileobj = io.BufferedReader (ConcatFileobjReader (cat_files)))
       tsize = 0
+      while len (cat_files) > 0:  # for 0-byte entries files might not be consummed
+        cat_files.pop (0).close ()
     
   
 if __name__ == "__main__":
