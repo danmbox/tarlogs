@@ -80,8 +80,7 @@ def cmdline (args):
     
   while len (args) > 0:
     if len (args) < 2:
-      argp.print_help ()
-      sys.exit (1)
+      argp.error ("Missing argument")
     flag = args.pop (0); path = args.pop (0)
     if flag == "-i":
       lastin = path
@@ -89,7 +88,9 @@ def cmdline (args):
       if is_stream_stat (st):
         tsize += add_str (slurp (path))
       elif stat.S_ISDIR (st.st_mode):
-        cat_files.append (path)
+        if len (cat_files) > 0:
+          argp.error ("Directory can't be combined with other inputs")
+        cat_files = [path]
       else:
         tsize += st.st_size
         cat_files.append (io.open (path, "rb"))
@@ -111,6 +112,8 @@ def cmdline (args):
         tarf.add (cat_files [0], arcname = path)
         cat_files = []
       else:
+        if isinstance (cat_files [0], str):  # directory can't be concatenated
+          argp.error ("Directory can't be combined with other inputs")
         tinfo = tarf.gettarinfo (lastin, arcname = path)
         tinfo.type = tarfile.REGTYPE
         tinfo.size = tsize
