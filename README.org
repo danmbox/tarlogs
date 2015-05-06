@@ -31,7 +31,7 @@ zbackup /zblogs/backups/$(date '+%Y%m%d_%H%M%S')
 #+END_EXAMPLE
 
 This will output a tar archive containing 2 entries, =dpkg-recent.log=
-and =kern-recent.log=. 
+and =kern-recent.log=. Run =tarlogs.py -h= for more help.
 
 * COPYRIGHT
 
