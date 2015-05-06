@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Tarlogs by danmbox</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Tarlogs</h1>
+        <h2>Create a Tar stream of arbitrarily-named entries by concatenating compressed and regular files</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/danmbox/tarlogs/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/danmbox/tarlogs/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/danmbox/tarlogs" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p><em>Create a Tar stream of arbitrarily-named entries from concatenated compressed and uncompressed files</em></p>
+
+<ul>
+<li>  <strong>Home page:</strong> <a href="http://danmbox.github.io/tarlogs">http://danmbox.github.io/tarlogs</a>
+</li>
+<li>  <strong>Downloads:</strong> <a href="https://github.com/danmbox/tarlogs">github</a>
+</li>
+<li>  <strong>Author:</strong> <a href="http://alumnus.caltech.edu/%7Emuresan/">Dan A. Muresan</a> (danmbox at gmail dot com)</li>
+</ul>
+
+<h1>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>DESCRIPTION</h1>
+
+<p><code>tarlogs</code> concatenates compressed and gzipped files (the latter are
+uncompressed first), then outputs the resulting entries to stdout,
+packed under arbitrary names in a tar stream. Each entry inherits its
+permission / ownership from the last file concatenated into that
+entry.</p>
+
+<p>Streams (the size of which can only be determined by reading until
+encountering EOF) will be buffered into memory. Either memory
+buffering or temporary files are necessary for streams because the tar
+format requires byte sizes of entries to precede their contents.</p>
+
+<h1>
+<a id="running" class="anchor" href="#running" aria-hidden="true"><span class="octicon octicon-link"></span></a>RUNNING</h1>
+
+<pre><code>cd /var/log
+/path/tarlogs.py \
+  -z dpkg.log.2.gz -i dpkg.log.1 -i dpkg.log -o dpkg-recent.log \
+  -i kern.log.1 -i kern.log -o kern-recent.log |
+zbackup /zblogs/backups/$(date '+%Y%m%d_%H%M%S')
+</code></pre>
+
+<p>This will output a tar archive containing 2 entries, <code>dpkg-recent.log</code>
+and <code>kern-recent.log</code>. </p>
+
+<h1>
+<a id="copyright" class="anchor" href="#copyright" aria-hidden="true"><span class="octicon octicon-link"></span></a>COPYRIGHT</h1>
+
+<p>Copyright 2015 Dan A. Muresan</p>
+
+<p>See LICENSE.txt for licensing information.</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
