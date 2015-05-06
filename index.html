@@ -52,6 +52,10 @@ encountering EOF) will be buffered into memory. Either memory
 buffering or temporary files are necessary for streams because the tar
 format requires byte sizes of entries to precede their contents.</p>
 
+<p>Directories are recursed into, as with regular <code>tar</code>, and may not be
+concatenated with other inputs. In this case one <code>-o</code> generates
+multiple tar entries, and controls the top-level path for all of them.</p>
+
 <h1>
 <a id="running" class="anchor" href="#running" aria-hidden="true"><span class="octicon octicon-link"></span></a>RUNNING</h1>
 
