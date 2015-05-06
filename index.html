@@ -28,7 +28,7 @@
 
     <div class="container">
       <section id="main_content">
-        <p><em>Create a Tar stream of arbitrarily-named entries from concatenated compressed and uncompressed files</em></p>
+        <p><em>Create a Tar stream of arbitrarily-named entries by concatenating groups of regular &amp; compressed files</em></p>
 
 <ul>
 <li>  <strong>Home page:</strong> <a href="http://danmbox.github.io/tarlogs">http://danmbox.github.io/tarlogs</a>
@@ -41,8 +41,8 @@
 <h1>
 <a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>DESCRIPTION</h1>
 
-<p><code>tarlogs</code> concatenates compressed and gzipped files (the latter are
-uncompressed first), then outputs the resulting entries to stdout,
+<p><code>tarlogs</code> concatenates groups of regular and gzipped files (the latter 
+are uncompressed first), then outputs the resulting entries to stdout,
 packed under arbitrary names in a tar stream. Each entry inherits its
 permission / ownership from the last file concatenated into that
 entry.</p>
