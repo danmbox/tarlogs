@@ -20,6 +20,10 @@ encountering EOF) will be buffered into memory. Either memory
 buffering or temporary files are necessary for streams because the tar
 format requires byte sizes of entries to precede their contents.
 
+Directories are recursed into, as with regular =tar=, and may not be
+concatenated with other inputs. In this case one =-o= generates
+multiple tar entries, and controls the top-level path for all of them.
+
 * RUNNING
 
 #+BEGIN_EXAMPLE shell
