@@ -58,7 +58,7 @@ def cmdline (args):
   def setup_argparser ():
     """Only used for help -- the actual parsing is done manually"""
     import argparse
-    _ = argparse.ArgumentParser (description = "Concatenates groups of regular and compressed files; outputs the resulting entries to stdout, packed under arbitrary names in a tar stream", epilog = "The tar output stream will contain one entry per -o option. Each -o causes all previously unsaved -i and -z inputs to be concatenated into an output entry with the specified name. This entry inherits its permission + ownership from its last  input. Streams (the size of which can only be determined by reading until encountering EOF) will be buffered into memory.")
+    _ = argparse.ArgumentParser (description = "Concatenates groups of regular and compressed files; outputs the resulting entries to stdout, packed under arbitrary names in a tar stream", epilog = "The tar output stream contains one entry per -o option. Each -o causes all previously unsaved -i/-z inputs to be concatenated into an output entry with the specified name. This entry inherits its permission + ownership from its last input. With no -i/-z arguments, the output name is used as an input path. Directories are recursed into, as with regular tar (in this case at most a single -i is allowed for the entry). Streams are buffered into memory.")
     _.add_argument ("-i", "--input")
     _.add_argument ("-z", "--input-zip")
     _.add_argument ("-o", "--output-entry")
