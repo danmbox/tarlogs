@@ -66,6 +66,7 @@ def cmdline (args):
   argp = setup_argparser ()
   if len (args) < 1 or args [0] in { "-h", "--help" }:
     argp.print_help ()
+    sys.exit (0)
 
   tarf = tarfile.open (fileobj = sys.stdout, mode="w|")
 
@@ -79,7 +80,8 @@ def cmdline (args):
     
   while len (args) > 0:
     if len (args) < 2:
-      argp.print_usage ()
+      argp.print_help ()
+      sys.exit (1)
     flag = args.pop (0); path = args.pop (0)
     if flag == "-i":
       lastin = path
