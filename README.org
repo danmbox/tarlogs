@@ -3,7 +3,7 @@
 
 /Create a Tar stream of arbitrarily-named entries from concatenated compressed and uncompressed files/
 
-  * Home page :: [[http://danmbox.github.com/tarlogs]]
+  * Home page :: [[http://danmbox.github.io/tarlogs]]
   * Downloads :: [[https://github.com/danmbox/tarlogs][github]]
   * Author :: [[http://alumnus.caltech.edu/~muresan/][Dan A. Muresan]] (danmbox at gmail dot com)
 
