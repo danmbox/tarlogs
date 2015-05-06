@@ -88,6 +88,8 @@ def cmdline (args):
       st = os.stat (path)
       if is_stream_stat (st):
         tsize += add_str (slurp (path))
+      elif stat.S_ISDIR (st.st_mode):
+        cat_files.append (path)
       else:
         tsize += st.st_size
         cat_files.append (io.open (path, "rb"))
@@ -105,6 +107,9 @@ def cmdline (args):
     elif flag == "-o":
       if len (cat_files) == 0:
         tarf.add (path)
+      elif len (cat_files) == 1 and isinstance (cat_files [0], str):
+        tarf.add (cat_files [0], arcname = path)
+        cat_files = []
       else:
         tinfo = tarf.gettarinfo (lastin, arcname = path)
         tinfo.type = tarfile.REGTYPE
