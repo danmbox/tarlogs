@@ -103,14 +103,16 @@ def cmdline (args):
         tsize += gzip_size (gzipf.fileobj)
         cat_files.append (gzipf)
     elif flag == "-o":
-      tinfo = tarf.gettarinfo (lastin, arcname = path)
-      tinfo.type = tarfile.REGTYPE
-      tinfo.size = tsize
-      tarf.addfile (tinfo, fileobj = io.BufferedReader (ConcatFileobjReader (cat_files)))
-      tsize = 0
-      while len (cat_files) > 0:  # for 0-byte entries files might not be consummed
-        cat_files.pop (0).close ()
-    
+      if len (cat_files) == 0:
+        tarf.add (path)
+      else:
+        tinfo = tarf.gettarinfo (lastin, arcname = path)
+        tinfo.type = tarfile.REGTYPE
+        tinfo.size = tsize
+        tarf.addfile (tinfo, fileobj = io.BufferedReader (ConcatFileobjReader (cat_files)))
+        tsize = 0
+        while len (cat_files) > 0:  # for 0-byte entries files might not be consummed
+          cat_files.pop (0).close ()
   
 if __name__ == "__main__":
   cmdline (sys.argv [1:])
