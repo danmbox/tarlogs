@@ -1,7 +1,7 @@
 #+TITLE: tarlogs
 #+OPTIONS: toc:nil
 
-/Create a Tar stream of arbitrarily-named entries from concatenated compressed and uncompressed files/
+/Create a Tar stream of arbitrarily-named entries by concatenating groups of regular & compressed files/
 
   * Home page :: [[http://danmbox.github.io/tarlogs]]
   * Downloads :: [[https://github.com/danmbox/tarlogs][github]]
@@ -9,8 +9,8 @@
 
 * DESCRIPTION
 
-=tarlogs= concatenates compressed and gzipped files (the latter are
-uncompressed first), then outputs the resulting entries to stdout,
+=tarlogs= concatenates groups of regular and gzipped files (the latter 
+are uncompressed first), then outputs the resulting entries to stdout,
 packed under arbitrary names in a tar stream. Each entry inherits its
 permission / ownership from the last file concatenated into that
 entry.
